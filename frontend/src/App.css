@@ -1,0 +1,284 @@
+#root {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #F8F0E3; 
+}
+
+.logo {
+  height: 3em;
+  padding: 0.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #00bfffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+  border: 2px solid #E2725B; 
+  border-radius: 8px;
+  background-color: #F5F5DC; /* fondo azul cielo muy claro */
+}
+
+.read-the-docs {
+  color: #009acd; /* texto azul cielo más oscuro */
+}
+
+/* 1. Contenedor Grid Principal */
+.gallery {
+  display: grid;                          
+  grid-template-columns: repeat(4, 1fr);  
+  gap: 30px;                              
+  margin-top: 20px;
+  justify-items: center;                  
+}
+
+/* 2. Contenedor de la Tarjeta (Imagen + Texto) */
+.gallery figure {
+  margin: 0;
+  padding: 0;
+  width: 370px;                           
+  display: flex;                          
+  flex-direction: column;                 
+  align-items: center;                    
+}
+
+/* 3. Estilo de la Imagen */
+.img-gallery {
+  width: 370px !important;                
+  height: 270px !important;               
+  object-fit: cover;                      
+  border-radius: 10px;                    
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); 
+}
+
+/* 4. Estilo del Pie de Página (Texto) */
+.gallery figcaption {
+  display: block !important;              
+  margin-top: 12px;                       
+  font-size: 18px !important;             
+  color: red !important;                  
+  font-weight: bold;                      
+  text-align: center;                     
+  width: 100%;                            
+}
+
+#video h2 {
+  color: #CD853F; 
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar {
+  background-color: #E2725B; 
+  padding: 0rem;
+  display: flex;
+  justify-content: center;
+  border: none;              
+  border-top: none !important;   
+  border-bottom: none !important;
+}
+
+.navbar a {
+  font-size: 25px;       
+  margin: 0 15px;        
+  color: #FFFFFF;        
+  text-decoration: none; 
+  font-weight: 600;      
+  letter-spacing: 1px;   
+}
+
+.navbar a, 
+section h1, 
+section h2 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+header, nav {
+  border: none !important;
+  background-color: #E2725B; 
+}
+
+/* 🎨 Estilos para las demás secciones */
+section h1, 
+section h2 {
+  color: red; 
+}
+
+section p {
+  color: red;             
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: justify;    
+  margin: 0 auto;
+  max-width: 900px;       
+}
+
+#servicios table, 
+#servicios th, 
+#servicios td {
+  color: red; 
+  border: 1px solid red; 
+}
+
+#inicio p {
+  color: red;             
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;     
+  margin: 0 auto;
+  max-width: 900px;       
+}
+
+#servicios thead th {
+  background-color: #E2725B; 
+  color: #FFFFFF;            
+  font-size: 20px;           
+  padding: 10px;             
+  text-align: center;        
+}
+
+#mision-vision strong {
+  display: block;          
+  text-align: center;      
+  font-size: 20px;         
+  margin-bottom: 8px;      
+  color: red;              
+}
+
+#mision-vision p {
+  text-align: justify;     
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 900px;        
+  color: red;              
+}
+
+form {
+  background-color: #E2725B; 
+  padding: 20px;
+  border-radius: 8px;
+}
+
+form label,
+form input,
+form textarea {
+  color: #000000; 
+  font-size: 16px;
+}
+
+form button {
+  background-color: #FFFFFF; 
+  color: #E2725B;            
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #CD5C5C; 
+  color: #FFFFFF;
+}
+
+footer {
+  background-color: #E2725B; 
+  color: #FFFFFF;            
+  text-align: center;
+  padding: 15px;
+}
+
+footer a {
+  color: #FFFFFF;            
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.gallery figcaption {
+  display: block;          
+  margin-top: 10px;        
+  font-size: 16px;         
+  color: #E2725B;          
+  font-weight: 600;        
+  text-align: center;      
+}
+
+.video-footer {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #6F4E37;   
+  text-align: center;
+}
+
+.video-credit {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #6F4E37;   
+  text-align: center;
+  font-style: italic;
+}
+
+/* 📱 Responsividad para pantallas medianas (tablets) */
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .gallery figure,
+  .img-gallery {
+    width: 100% !important;   
+    height: auto !important;  
+  }
+}
+
+/* 📱 Responsividad para pantallas pequeñas (celulares) */
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: 1fr; 
+    gap: 15px;                  
+  }
+
+  .gallery figure,
+  .img-gallery {
+    width: 100% !important;   
+    height: auto !important;  
+  }
+
+  .navbar a {
+    font-size: 18px;          
+    margin: 0 8px;            
+  }
+
+  section p {
+    font-size: 16px;          
+    max-width: 100%;          
+  }
+}
