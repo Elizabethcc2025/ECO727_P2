@@ -5,7 +5,7 @@ import HeroSection from './components/HeroSection';
 import Services from './components/Services';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
-import ContactForm from './components/ContactForm';
+import TiposCafe from './components/TiposCafeList';
 import Footer from './components/Footer';
 
 
@@ -50,7 +50,7 @@ function App() {
 
 
       <Testimonials />
-      <ContactForm />
+      <TiposCafe />
       <Footer />
     </>
   );
