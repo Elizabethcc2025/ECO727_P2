@@ -1,112 +1,112 @@
 import axios from "../api/axios";
 import { useEffect, useState } from "react";
 
-function CancionList() {
-    const [canciones, setCanciones] = useState([]);
+function TiposCafeList() {
+    const [tiposCafe, setTiposCafe] = useState([]);
     const [formData, setFormData] = useState({
-        titulo: "",
-        grupo_interprete: "",
-        genero: "",
-        nacionalidad: "",
-        fecha_lanzamiento: "",
-        idioma: "",
-        duracion_minutos: "",
-        video: "",
+        nombre_cliente: "",
+        correo_electronico: "",
+        telefono_contacto: "",
+        tipo_cafe_preferido: "",
+        tamano_bebida: "",
+        nivel_intensidad: "",
+        tipo_leche: "",
         comentarios: "",
+        fecha_hora_pedido: "",
     });
 
     const [editandoId, setEditandoId] = useState(null);
 
-    // Obtener canciones
-    const getCanciones = async () => {
-        const res = await axios.get("canciones/");
-        setCanciones(res.data);
+    // Obtener pedidos de café
+    const getTiposCafe = async () => {
+        const res = await axios.get("tipos_cafe/");
+        setTiposCafe(res.data);
     };
 
-    // Crear nueva canción
-    const createCancion = async () => {
-        await axios.post("canciones/", formData);
+    // Crear nuevo pedido
+    const createTiposCafe = async () => {
+        await axios.post("tipos_cafe/", formData); 
         resetForm();
-        getCanciones();
+        getTiposCafe();
     };
 
-    // Actualizar canción existente
-    const updateCancion = async (id) => {
-        await axios.put(`canciones/${id}/`, formData);
+    // Actualizar pedido existente
+    const updateTiposCafe = async (id) => {
+        await axios.put(`tipos_cafe/${id}/`, formData);
         resetForm();
         setEditandoId(null);
-        getCanciones();
+        getTiposCafe();
     };
 
-    // Eliminar canción
-    const deleteCancion = async (id) => {
-        await axios.delete(`canciones/${id}/`);
-        getCanciones();
+    // Eliminar pedido
+    const deleteTiposCafe = async (id) => {
+        await axios.delete(`tipos_cafe/${id}/`);
+        getTiposCafe();
     };
 
     // Reiniciar formulario
     const resetForm = () => {
         setFormData({
-            titulo: "",
-            grupo_interprete: "",
-            genero: "",
-            nacionalidad: "",
-            fecha_lanzamiento: "",
-            idioma: "",
-            duracion_minutos: "",
-            video: "",
+            nombre_cliente: "",
+            correo_electronico: "",
+            telefono_contacto: "",
+            tipo_cafe_preferido: "",
+            tamano_bebida: "",
+            nivel_intensidad: "",
+            tipo_leche: "",
             comentarios: "",
+            fecha_hora_pedido: "",
         });
     };
 
     // Cargar datos en el formulario para editar
-    const handleEdit = (cancion) => {
-        setEditandoId(cancion.id);
+    const handleEdit = (pedido) => {
+        setEditandoId(pedido.id);
         setFormData({
-            titulo: cancion.titulo,
-            grupo_interprete: cancion.grupo_interprete,
-            genero: cancion.genero,
-            nacionalidad: cancion.nacionalidad,
-            fecha_lanzamiento: cancion.fecha_lanzamiento,
-            idioma: cancion.idioma,
-            duracion_minutos: cancion.duracion_minutos,
-            video: cancion.video,
-            comentarios: cancion.comentarios,
+            nombre_cliente: pedido.nombre_cliente,
+            correo_electronico: pedido.correo_electronico,
+            telefono_contacto: pedido.telefono_contacto,
+            tipo_cafe_preferido: pedido.tipo_cafe_preferido,
+            tamano_bebida: pedido.tamano_bebida,
+            nivel_intensidad: pedido.nivel_intensidad,
+            tipo_leche: pedido.tipo_leche,
+            comentarios: pedido.comentarios,
+            fecha_hora_pedido: pedido.fecha_hora_pedido,
         });
     };
 
     useEffect(() => {
-        getCanciones();
+        getTiposCafe();
     }, []);
 
     return (
-        <section id="canciones">
-            <h2>Canciones favoritas de la Estudiantina UPIICSA</h2>
+        <section id="TiposCafe">
+            <h2>Pedidos de Café</h2>
 
             {/* FORMULARIO */}
             <form
-                className="cancion-form"
+                className="TiposCafe-form"
                 onSubmit={(e) => {
                     e.preventDefault();
                     if (editandoId) {
-                        updateCancion(editandoId);
+                        updateTiposCafe(editandoId);
                     } else {
-                        createCancion();
+                        createTiposCafe();
                     }
                 }}
             >
-                <input placeholder="Título" value={formData.titulo} onChange={(e) => setFormData({ ...formData, titulo: e.target.value })} />
-                <input placeholder="Grupo/Intérprete" value={formData.grupo_interprete} onChange={(e) => setFormData({ ...formData, grupo_interprete: e.target.value })} />
-                <input placeholder="Género" value={formData.genero} onChange={(e) => setFormData({ ...formData, genero: e.target.value })} />
-                <input placeholder="Nacionalidad" value={formData.nacionalidad} onChange={(e) => setFormData({ ...formData, nacionalidad: e.target.value })} />
-                <input type="date" value={formData.fecha_lanzamiento} onChange={(e) => setFormData({ ...formData, fecha_lanzamiento: e.target.value })} />
-                <input placeholder="Idioma" value={formData.idioma} onChange={(e) => setFormData({ ...formData, idioma: e.target.value })} />
-                <input placeholder="Duración (min)" value={formData.duracion_minutos} onChange={(e) => setFormData({ ...formData, duracion_minutos: e.target.value })} />
-                <input placeholder="URL del video" value={formData.video} onChange={(e) => setFormData({ ...formData, video: e.target.value })} />
+                <input placeholder="Nombre del cliente" value={formData.nombre_cliente} onChange={(e) => setFormData({ ...formData, nombre_cliente: e.target.value })} />
+                <input placeholder="Correo electrónico" value={formData.correo_electronico} onChange={(e) => setFormData({ ...formData, correo_electronico: e.target.value })} />
+                <input placeholder="Teléfono de contacto" value={formData.telefono_contacto} onChange={(e) => setFormData({ ...formData, telefono_contacto: e.target.value })} />
+                <input placeholder="Tipo de café preferido" value={formData.tipo_cafe_preferido} onChange={(e) => setFormData({ ...formData, tipo_cafe_preferido: e.target.value })} />
+                <input placeholder="Tamaño de la bebida" value={formData.tamano_bebida} onChange={(e) => setFormData({ ...formData, tamano_bebida: e.target.value })} />
+                <input placeholder="Nivel de intensidad" value={formData.nivel_intensidad} onChange={(e) => setFormData({ ...formData, nivel_intensidad: e.target.value })} />
+                <input placeholder="Tipo de leche" value={formData.tipo_leche} onChange={(e) => setFormData({ ...formData, tipo_leche: e.target.value })} />
                 <textarea placeholder="Comentarios" value={formData.comentarios} onChange={(e) => setFormData({ ...formData, comentarios: e.target.value })} />
+                <input type="datetime-local" value={formData.fecha_hora_pedido} onChange={(e) => setFormData({ ...formData, fecha_hora_pedido: e.target.value })} />
 
                 <button type="submit">
-                    {editandoId ? "Guardar cambios" : "Agregar canción"}
+                    {editandoId ? "Guardar cambios" : "Agregar pedido"}
                 </button>
 
                 {editandoId && (
@@ -123,52 +123,43 @@ function CancionList() {
                 )}
             </form>
 
-            <div class="table-responsive">
-
+            <div className="table-responsive">
                 {/* TABLA */}
-                <table className="cancion-tabla">
+                <table className="TiposCafe-tabla">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Título</th>
-                            <th>Grupo/Intérprete</th>
-                            <th>Género</th>
-                            <th>Nacionalidad</th>
-                            <th>Fecha lanzamiento</th>
-                            <th>Idioma</th>
-                            <th>Duración</th>
-                            <th>Video</th>
+                            <th>Nombre del cliente</th>
+                            <th>Correo electrónico</th>
+                            <th>Teléfono de contacto</th>
+                            <th>Tipo de café preferido</th>
+                            <th>Tamaño de la bebida</th>
+                            <th>Nivel de intensidad</th>
+                            <th>Tipo de leche</th>
                             <th>Comentarios</th>
+                            <th>Fecha y hora de pedido</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {canciones.map((c) => (
+                        {tiposCafe.map((c) => (
                             <tr key={c.id}>
                                 <td>{c.id}</td>
-                                <td>{c.titulo}</td>
-                                <td>{c.grupo_interprete}</td>
-                                <td>{c.genero}</td>
-                                <td>{c.nacionalidad}</td>
-                                <td>{c.fecha_lanzamiento}</td>
-                                <td>{c.idioma}</td>
-                                <td>{c.duracion_minutos}</td>
-                                <td>
-                                    {c.video ? (
-                                        <a href={c.video} target="_blank" rel="noopener noreferrer">
-                                            Ver video
-                                        </a>
-                                    ) : (
-                                        "-"
-                                    )}
-                                </td>
+                                <td>{c.nombre_cliente}</td>
+                                <td>{c.correo_electronico}</td>
+                                <td>{c.telefono_contacto}</td>
+                                <td>{c.tipo_cafe_preferido}</td>
+                                <td>{c.tamano_bebida}</td>
+                                <td>{c.nivel_intensidad}</td>
+                                <td>{c.tipo_leche}</td>
                                 <td>{c.comentarios}</td>
+                                <td>{c.fecha_hora_pedido}</td>
                                 <td>
                                     <button onClick={() => handleEdit(c)}>✏️ Editar</button>
                                     <button
                                         onClick={() => {
-                                            if (window.confirm(`¿Estás seguro de que deseas eliminar "${c.titulo}"?`)) {
-                                                deleteCancion(c.id);
+                                            if (window.confirm(`¿Estás seguro de que deseas eliminar el pedido de "${c.nombre_cliente}"?`)) {
+                                                deleteTiposCafe(c.id);
                                             }
                                         }}
                                     >
@@ -184,5 +175,4 @@ function CancionList() {
     );
 }
 
-export default CancionList;
-
+export default TiposCafeList;
