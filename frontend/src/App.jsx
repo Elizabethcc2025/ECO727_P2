@@ -1,12 +1,12 @@
 
 import './App.css';
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import Services from './components/Services';
-import Gallery from './components/Gallery';
-import Testimonials from './components/Testimonials';
-import TiposCafe from './components/TiposCafeList';
-import Footer from './components/Footer';
+import Navbar from './Components/Navbar';
+import HeroSection from './Components/HeroSection';
+import Services from './Components/Services';
+import Gallery from './Components/Gallery';
+import Testimonials from './Components/Testimonials';
+import TiposCafe from './Components/TiposCafeList';
+import Footer from './Components/Footer';
 
 
 function App() {
