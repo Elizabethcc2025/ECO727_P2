@@ -1,13 +1,12 @@
-models.py
 from django.db import models
 
 
-from django.db import models
+
 
 
 class TiposCafe(models.Model):
     #agregando 9 campos más el id de tipo int que se genera en automatico seran 10
-    id = models.IntegerField(primary_key=True)  # Identificador único
+      # Identificador único
     nombre_cliente = models.CharField(max_length=200)
     correo_electronico = models.EmailField(max_length=200)
     telefono_contacto = models.CharField(max_length=20)
