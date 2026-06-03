@@ -2,7 +2,7 @@ import axios from "../api/axios";
 import { useEffect, useState } from "react";
 
 function TiposCafeList() {
-    const [TiposCafe, setTiposCafe] = useState([]);
+    const [tiposCafe, setTiposCafe] = useState([]);
     const [formData, setFormData] = useState({
         nombre_cliente: "",
         correo_electronico: "",
@@ -19,50 +19,63 @@ function TiposCafeList() {
 
     // Obtener pedidos de café
     const getTiposCafe = async () => {
-        const res = await axios.get("TiposCafe");
-        setTiposCafe(res.data);
+        try {
+            const res = await axios.get("TiposCafe/");
+            setTiposCafe(res.data);
+        } catch (error) {
+            console.error("Error obteniendo pedidos:", error);
+        }
     };
 
-   // Crear nuevo pedido
-const createTiposCafe = async () => {
-    try {
-        console.log("Datos enviados:", formData);
+    // Crear nuevo pedido
+    const createTiposCafe = async () => {
+        try {
+            console.log("Datos enviados:", formData);
 
-        const res = await axios.post("TiposCafe", formData);
+            const res = await axios.post("TiposCafe/", formData);
 
-        console.log("Pedido creado correctamente");
-        console.log("Respuesta:", res.data);
+            console.log("Pedido creado correctamente");
+            console.log("Respuesta:", res.data);
 
-        resetForm();
-        getTiposCafe();
+            resetForm();
+            getTiposCafe();
 
-    } catch (error) {
-        console.error("Error completo:", error);
+        } catch (error) {
+            console.error("Error completo:", error);
 
-        if (error.response) {
-            console.log("Status:", error.response.status);
-            console.log("Response:", error.response.data);
-        } else if (error.request) {
-            console.log("No hubo respuesta del servidor");
-            console.log(error.request);
-        } else {
-            console.log("Error:", error.message);
+            if (error.response) {
+                console.log("Status:", error.response.status);
+                console.log("Response:", error.response.data);
+            } else if (error.request) {
+                console.log("No hubo respuesta del servidor");
+                console.log(error.request);
+            } else {
+                console.log("Error:", error.message);
+            }
         }
-    }
-};
+    };
 
     // Actualizar pedido existente
     const updateTiposCafe = async (id) => {
-        await axios.put(`TiposCafe/${id}/`, formData);
-        resetForm();
-        setEditandoId(null);
-        getTiposCafe();
+        try {
+            await axios.put(`TiposCafe/${id}/`, formData);
+
+            resetForm();
+            setEditandoId(null);
+            getTiposCafe();
+        } catch (error) {
+            console.error("Error actualizando:", error);
+        }
     };
 
     // Eliminar pedido
     const deleteTiposCafe = async (id) => {
-        await axios.delete(`TiposCafe/${id}/`);
-        getTiposCafe();
+        try {
+            await axios.delete(`TiposCafe/${id}/`);
+            getTiposCafe();
+        } catch (error) {
+            console.error("Error eliminando:", error);
+        }
     };
 
     // Reiniciar formulario
@@ -83,6 +96,7 @@ const createTiposCafe = async () => {
     // Cargar datos en el formulario para editar
     const handleEdit = (pedido) => {
         setEditandoId(pedido.id);
+
         setFormData({
             nombre_cliente: pedido.nombre_cliente,
             correo_electronico: pedido.correo_electronico,
@@ -104,11 +118,11 @@ const createTiposCafe = async () => {
         <section id="TiposCafe">
             <h2>Pedidos de Café</h2>
 
-            {/* FORMULARIO */}
             <form
                 className="TiposCafe-form"
                 onSubmit={(e) => {
                     e.preventDefault();
+
                     if (editandoId) {
                         updateTiposCafe(editandoId);
                     } else {
@@ -116,15 +130,104 @@ const createTiposCafe = async () => {
                     }
                 }}
             >
-                <input placeholder="Nombre del cliente" value={formData.nombre_cliente} onChange={(e) => setFormData({ ...formData, nombre_cliente: e.target.value })} />
-                <input placeholder="Correo electrónico" value={formData.correo_electronico} onChange={(e) => setFormData({ ...formData, correo_electronico: e.target.value })} />
-                <input placeholder="Teléfono de contacto" value={formData.telefono_contacto} onChange={(e) => setFormData({ ...formData, telefono_contacto: e.target.value })} />
-                <input placeholder="Tipo de café preferido" value={formData.tipo_cafe_preferido} onChange={(e) => setFormData({ ...formData, tipo_cafe_preferido: e.target.value })} />
-                <input placeholder="Tamaño de la bebida" value={formData.tamano_bebida} onChange={(e) => setFormData({ ...formData, tamano_bebida: e.target.value })} />
-                <input placeholder="Nivel de intensidad" value={formData.nivel_intensidad} onChange={(e) => setFormData({ ...formData, nivel_intensidad: e.target.value })} />
-                <input placeholder="Tipo de leche" value={formData.tipo_leche} onChange={(e) => setFormData({ ...formData, tipo_leche: e.target.value })} />
-                <textarea placeholder="Comentarios" value={formData.comentarios} onChange={(e) => setFormData({ ...formData, comentarios: e.target.value })} />
-                <input type="datetime-local" value={formData.fecha_hora_pedido} onChange={(e) => setFormData({ ...formData, fecha_hora_pedido: e.target.value })} />
+                <input
+                    placeholder="Nombre del cliente"
+                    value={formData.nombre_cliente}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            nombre_cliente: e.target.value,
+                        })
+                    }
+                />
+
+                <input
+                    placeholder="Correo electrónico"
+                    value={formData.correo_electronico}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            correo_electronico: e.target.value,
+                        })
+                    }
+                />
+
+                <input
+                    placeholder="Teléfono de contacto"
+                    value={formData.telefono_contacto}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            telefono_contacto: e.target.value,
+                        })
+                    }
+                />
+
+                <input
+                    placeholder="Tipo de café preferido"
+                    value={formData.tipo_cafe_preferido}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            tipo_cafe_preferido: e.target.value,
+                        })
+                    }
+                />
+
+                <input
+                    placeholder="Tamaño de la bebida"
+                    value={formData.tamano_bebida}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            tamano_bebida: e.target.value,
+                        })
+                    }
+                />
+
+                <input
+                    placeholder="Nivel de intensidad"
+                    value={formData.nivel_intensidad}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            nivel_intensidad: e.target.value,
+                        })
+                    }
+                />
+
+                <input
+                    placeholder="Tipo de leche"
+                    value={formData.tipo_leche}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            tipo_leche: e.target.value,
+                        })
+                    }
+                />
+
+                <textarea
+                    placeholder="Comentarios"
+                    value={formData.comentarios}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            comentarios: e.target.value,
+                        })
+                    }
+                />
+
+                <input
+                    type="datetime-local"
+                    value={formData.fecha_hora_pedido}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            fecha_hora_pedido: e.target.value,
+                        })
+                    }
+                />
 
                 <button type="submit">
                     {editandoId ? "Guardar cambios" : "Agregar pedido"}
@@ -145,7 +248,6 @@ const createTiposCafe = async () => {
             </form>
 
             <div className="table-responsive">
-                {/* TABLA */}
                 <table className="TiposCafe-tabla">
                     <thead>
                         <tr>
@@ -162,8 +264,9 @@ const createTiposCafe = async () => {
                             <th>Acciones</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {TiposCafe.map((c) => (
+                        {tiposCafe.map((c) => (
                             <tr key={c.id}>
                                 <td>{c.id}</td>
                                 <td>{c.nombre_cliente}</td>
@@ -176,10 +279,17 @@ const createTiposCafe = async () => {
                                 <td>{c.comentarios}</td>
                                 <td>{c.fecha_hora_pedido}</td>
                                 <td>
-                                    <button onClick={() => handleEdit(c)}>✏️ Editar</button>
+                                    <button onClick={() => handleEdit(c)}>
+                                        ✏️ Editar
+                                    </button>
+
                                     <button
                                         onClick={() => {
-                                            if (window.confirm(`¿Estás seguro de que deseas eliminar el pedido de "${c.nombre_cliente}"?`)) {
+                                            if (
+                                                window.confirm(
+                                                    `¿Estás seguro de que deseas eliminar el pedido de "${c.nombre_cliente}"?`
+                                                )
+                                            ) {
                                                 deleteTiposCafe(c.id);
                                             }
                                         }}
