@@ -2,7 +2,7 @@ import axios from "../api/axios";
 import { useEffect, useState } from "react";
 
 function TiposCafeList() {
-    const [tiposCafe, setTiposCafe] = useState([]);
+    const [TiposCafe, setTiposCafe] = useState([]);
     const [formData, setFormData] = useState({
         nombre_cliente: "",
         correo_electronico: "",
@@ -19,7 +19,7 @@ function TiposCafeList() {
 
     // Obtener pedidos de café
     const getTiposCafe = async () => {
-        const res = await axios.get("tipos_cafe/");
+        const res = await axios.get("TiposCafe");
         setTiposCafe(res.data);
     };
 
@@ -28,7 +28,7 @@ const createTiposCafe = async () => {
     try {
         console.log("Datos enviados:", formData);
 
-        const res = await axios.post("tipos_cafe/", formData);
+        const res = await axios.post("TiposCafe", formData);
 
         console.log("Pedido creado correctamente");
         console.log("Respuesta:", res.data);
@@ -53,7 +53,7 @@ const createTiposCafe = async () => {
 
     // Actualizar pedido existente
     const updateTiposCafe = async (id) => {
-        await axios.put(`tipos_cafe/${id}/`, formData);
+        await axios.put(`TiposCafe/${id}/`, formData);
         resetForm();
         setEditandoId(null);
         getTiposCafe();
@@ -61,7 +61,7 @@ const createTiposCafe = async () => {
 
     // Eliminar pedido
     const deleteTiposCafe = async (id) => {
-        await axios.delete(`tipos_cafe/${id}/`);
+        await axios.delete(`TiposCafe/${id}/`);
         getTiposCafe();
     };
 
@@ -163,7 +163,7 @@ const createTiposCafe = async () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {tiposCafe.map((c) => (
+                        {TiposCafe.map((c) => (
                             <tr key={c.id}>
                                 <td>{c.id}</td>
                                 <td>{c.nombre_cliente}</td>
