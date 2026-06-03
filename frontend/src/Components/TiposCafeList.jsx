@@ -23,12 +23,33 @@ function TiposCafeList() {
         setTiposCafe(res.data);
     };
 
-    // Crear nuevo pedido
-    const createTiposCafe = async () => {
-        await axios.post("tipos_cafe/", formData); 
+   // Crear nuevo pedido
+const createTiposCafe = async () => {
+    try {
+        console.log("Datos enviados:", formData);
+
+        const res = await axios.post("tipos_cafe/", formData);
+
+        console.log("Pedido creado correctamente");
+        console.log("Respuesta:", res.data);
+
         resetForm();
         getTiposCafe();
-    };
+
+    } catch (error) {
+        console.error("Error completo:", error);
+
+        if (error.response) {
+            console.log("Status:", error.response.status);
+            console.log("Response:", error.response.data);
+        } else if (error.request) {
+            console.log("No hubo respuesta del servidor");
+            console.log(error.request);
+        } else {
+            console.log("Error:", error.message);
+        }
+    }
+};
 
     // Actualizar pedido existente
     const updateTiposCafe = async (id) => {
