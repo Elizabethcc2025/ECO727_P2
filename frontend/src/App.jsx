@@ -41,7 +41,7 @@ function App() {
 
 <section id="video">
   <h2>Video de nuestras especialidades</h2>
-  <video controls width="650" height="400">
+  <video controls>
     <source src="/assets/videos/Cafeteria_de_Eli.mp4" type="video/mp4" />
     Tu navegador no soporta video.
   </video>
@@ -50,8 +50,20 @@ function App() {
 
 
       <Testimonials />
-      <TiposCafe />
-      <Footer />
+
+<section id="clientes">
+  <h2>Nuestros Clientes</h2>
+
+  <p>
+    Agradecemos la confianza de nuestros clientes y su preferencia
+    por nuestra cafetería. Seguimos trabajando para ofrecer
+    productos de calidad y un servicio cercano y amable.
+  </p>
+</section>
+
+<TiposCafe />
+
+<Footer />
     </>
   );
 }

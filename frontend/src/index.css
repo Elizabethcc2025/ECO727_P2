@@ -74,6 +74,14 @@ iframe {
   height: 340px;
   border: none;
 }
+/* ======== VIDEO RESPONSIVO ======== */
+#video video {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
 /* ======== GALERÍA ======== */
 .gallery {
@@ -167,6 +175,14 @@ footer {
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
+}
+/* ======== TABLA RESPONSIVA ======== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+.TiposCafe-tabla {
+  min-width: 1200px;
 }
 
 /* ======== RESPONSIVE DESIGN ======== */
