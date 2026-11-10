@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 # DATABASE (MYSQL RAILWAY)
-DATABASE_URL = os.environ.get("MYSQL_PUBLIC_URL")
+DATABASE_URL = os.environ.get("MYSQL_URL")
 
 if DATABASE_URL:
     DATABASES = {
